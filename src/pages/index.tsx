@@ -1,6 +1,80 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ChartData, ChartOptions } from 'chart.js';
+import { Chart } from 'react-chartjs-2';
+
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+  PointElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+const StatisticsSection = () => {
+  const options: ChartOptions<'bar'> = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+      },
+      title: {
+        display: true,
+        text: '불법 웹툰 사이트로 인한 웹툰 피해액 (2017-2022)',
+      },
+    },
+  };
+
+  const data: ChartData<'bar'> = {
+    labels: ['2017', '2018', '2019', '2020', '2021', '2022'],
+    datasets: [
+      {
+        type: 'bar' as const,
+        label: '피해액 (단위: 억 원)',
+        data: [5586, 8378, 3183, 5488, 8427, 7215],
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+    ],
+  };
+
+  return (
+    <section className="container mx-auto px-4 py-16">
+      <h2 className="text-3xl font-bold mt-10 mb-4">웹툰 불법 유통 피해 현황 알아보기</h2>
+      <p className="mb-8 text-gray-700">
+        불법 웹툰 사이트로 인해 많은 창작자들이 저작권 침해와 수익 감소의 피해를 입고 있습니다. 
+        지금도 많은 작품들이 무단으로 유통되고 있으며, 창작자들의 권리가 보호받지 못하고 있습니다.
+      </p>
+      <div className="w-full flex justify-center">
+        <div className="w-full md:w-2/3">
+          <Chart type='bar' options={options} data={data} />
+        </div>
+      </div>
+      {/* 통계 하단 설명 문구 */}
+      <p className="mt-10 text-center text-sm text-gray-600">
+        출처 : 한국콘텐츠진흥원
+        <br />
+        * 2017년도와 2018년도 8월까지의 누적 피해량이 1조 172억 원임을 고려하여 2018년 4개월치 분량을 임의로 계산하여 추가하였습니다.
+      </p>
+    </section>
+  );
+};
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -99,8 +173,8 @@ const Index = () => {
           </div>
         </div>
       )}
-           {/* 메인 콘텐츠 */}
-           <main className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
+      {/* 메인 콘텐츠 */}
+      <main className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
         {/* 왼쪽 텍스트와 버튼 부분 */}
         <div className="w-full md:w-1/2 mb-8 md:mb-0 md:pr-16 flex flex-col justify-center">
           <p className="text-l font-extrabold mb-4 text-blue-500">소개</p> 
@@ -119,12 +193,12 @@ const Index = () => {
         {/* 오른쪽에 이미지 배치 */}
         <div className="w-full md:w-1/2 flex items-center justify-center">
           <div className="w-full h-[500px] flex items-center justify-center"> {/* 이미지 영역 */}
-            <Image src="/images/placeholder-1.png" alt="Placeholder" layout="intrinsic" width={500} height={500} />
+            <Image src="/images/placeholder-1.png" alt="Placeholder" width={500} height={500} />
           </div>
         </div>
       </main>
 
-         {/* 비디오 섹션 */}
+      {/* 비디오 섹션 */}
       <section className="container mx-auto px-4 py-16 relative">
         {/* 비디오 영역 */}
         <div className="w-full h-[500px] bg-black relative overflow-hidden">
@@ -142,51 +216,71 @@ const Index = () => {
           </div>
         </div>
       </section>
- 
-{/* 주요 기능 섹션 */}
-<section className="container mx-auto px-4 py-16">
+      {/* 주요 기능 섹션 */}
+      <section className="container mx-auto px-4 py-16">
         <h2 className="text-3xl font-bold mt-10 mb-20 text-center">크리에이터 허브의 주요 기능</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* 불법 웹툰·웹소설 신고 */}
-          <div className="p-6 text-center">
-            <Image src="/images/sue.png" alt="Placeholder" width={250} height={150} />
+          <div className="p-1 text-center">
+            <Image
+              src="/images/sue.png"
+              alt="Placeholder"
+              width={400}
+              height={150}
+              className="w-full h-auto" // 반응형 이미지 크기 조정
+            />
             <h3 className="text-xl font-bold mt-4">불법 웹툰·웹소설 신고</h3>
             <p className="mt-2">저작권 침해를 신고하고 보호받으세요</p>
             <Link href="/report" className="inline-block mt-4 text-blue-500">신고하기 &gt;</Link>
           </div>
 
           {/* 법률 정보 지원 */}
-          <div className="p-6 text-center">
-            <Image src="/images/lawyer.png" alt="Placeholder" width={250} height={150} />
+          <div className="p-1 text-center">
+            <Image
+              src="/images/lawyer.png"
+              alt="Placeholder"
+              width={400}
+              height={150}
+              className="w-full h-auto" // 반응형 이미지 크기 조정
+            />
             <h3 className="text-xl font-bold mt-4">법률 정보 지원</h3>
             <p className="mt-2">저작권 보호를 위한 법률 정보를 제공합니다.</p>
-            <Link href="/legal-support" className="inline-block mt-4 text-blue-500">신고하기 &gt;</Link>
+            <Link href="/legal" className="inline-block mt-4 text-blue-500">자세히 알아보기 &gt;</Link>
           </div>
 
           {/* 창작자 지원 프로그램 */}
-          <div className="p-6 text-center">
-            <Image src="/images/help.png" alt="Placeholder" width={250} height={150} />
+          <div className="p-1 text-center">
+            <Image
+              src="/images/help.png"
+              alt="Placeholder"
+              width={400}
+              height={150}
+              className="w-full h-auto" // 반응형 이미지 크기 조정
+            />
             <h3 className="text-xl font-bold mt-4">창작자 지원 프로그램</h3>
             <p className="mt-2">창작자들을 위한 다양한 지원을 만나보세요.</p>
-            <Link href="/creator-support" className="inline-block mt-4 text-blue-500">지원 알아보기 &gt;</Link>
+            <Link href="/support" className="inline-block mt-4 text-blue-500">지원 알아보기 &gt;</Link>
           </div>
 
           {/* 창작자 커뮤니티 */}
-          <div className="p-6 text-center">
-            <Image src="/images/community.png" alt="Placeholder" width={250} height={150} />
+          <div className="p-1 text-center">
+            <Image
+              src="/images/community.png"
+              alt="Placeholder"
+              width={400}
+              height={150}
+              className="w-full h-auto" // 반응형 이미지 크기 조정
+            />
             <h3 className="text-xl font-bold mt-4">창작자 커뮤니티</h3>
-            <p className="mt-2">같은 고민을 가진 창작자들과 <br/> 소통해보세요.</p>
+            <p className="mt-2">같은 고민을 가진 창작자들과 <br /> 소통해보세요.</p>
             <Link href="/community" className="inline-block mt-4 text-blue-500">커뮤니티 참여 &gt;</Link>
           </div>
         </div>
       </section>
+
+      <StatisticsSection />
     </div>
   );
 };
-
-
-
-
-
 
 export default Index;
