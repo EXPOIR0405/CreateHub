@@ -78,6 +78,40 @@ const StatisticsSection = () => {
   );
 };
 
+const Footer = () => {
+  return (
+    <footer className="bg-white border-t py-8">
+      <div className="container mx-auto px-4">
+        {/* 상단 네비게이션 부분 */}
+        <div className="flex justify-between items-center mb-8">
+          {/* 로고 */}
+          <div className="text-2xl font-bold">CreateHub</div>
+          
+          {/* 네비게이션 메뉴 */}
+          <nav className="hidden md:flex space-x-6">
+            <Link href="/about" className="text-gray-700 hover:text-black">크리에이터 허브 소개</Link>
+            <Link href="/contact" className="text-gray-700 hover:text-black">문의하기</Link>
+            <Link href="/faq" className="text-gray-700 hover:text-black">자주 묻는 질문</Link>
+          </nav>
+        </div>
+
+        {/* 하단 저작권 및 링크 부분 */}
+        <div className="border-t pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-600 text-sm">© 2024 크리에이터 허브. All rights reserved.</p>
+            <nav className="flex space-x-4 mt-4 md:mt-0">
+              <Link href="/terms" className="text-gray-600 hover:text-black text-sm">서비스 이용 약관</Link>
+              <Link href="/privacy" className="text-gray-600 hover:text-black text-sm">개인정보 처리방침</Link>
+              <Link href="/community-guidelines" className="text-gray-600 hover:text-black text-sm">커뮤니티 가이드라인</Link>
+            </nav>
+            <p className="text-gray-600 text-sm mt-4 md:mt-0">문의: rkdalswjd0405@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -437,6 +471,8 @@ const Index = () => {
         ))}
       </div>
     </section>
+    {/* 푸터 섹션 */}
+    <Footer />
     </div>
   );
 };
