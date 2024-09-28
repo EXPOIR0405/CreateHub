@@ -3,6 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ChartData, ChartOptions } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 
 import {
   Chart as ChartJS,
@@ -92,6 +95,57 @@ const Index = () => {
   // 비디오 재생이 끝날 때 호출될 함수
   const handleVideoEnd = () => {
     setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoSources.length);
+  };
+
+  // 커스텀 화살표 컴포넌트
+const PrevArrow = ({ onClick }: { onClick?: () => void }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="absolute left-0 z-10 transform -translate-y-1/2 top-1/2 bg-white border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
+    >
+      <svg
+        className="w-6 h-6 text-gray-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+  );
+};
+
+const NextArrow = ({ onClick }: { onClick?: () => void }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="absolute right-0 z-10 transform -translate-y-1/2 top-1/2 bg-white border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
+    >
+      <svg
+        className="w-6 h-6 text-gray-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  );
+};
+
+  // 그 다음 슬라이더 설정을 정의합니다
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
   };
 
   return (
@@ -279,6 +333,45 @@ const Index = () => {
       </section>
 
       <StatisticsSection />
+      {/* 섹션 헤더 */}
+      <section className="container mx-auto px-4 py-16 bg-slate-100 overflow-hidden">
+        <h2 className="text-3xl font-bold text-center mb-10">독자들이 보내는 따뜻한 응원 메시지</h2>
+
+        <Slider {...settings}>
+          {/* 응원 메세지 항목 1 */}
+          <div className="text-center">
+            <p className="text-xl font-semibold mb-4">
+              좋아하는 웹툰을 정식으로 즐길 수 있어 행복해요. 작가님, 항상 응원합니다!
+            </p>
+            <div className="flex justify-center items-center space-x-4">
+              <Image src="/images/reader.png" alt="Reader" width={50} height={50} className="rounded-full" />
+              <span className="text-lg font-bold">독자 A</span>
+            </div>
+          </div>
+
+          {/* 슬라이더 항목 2 */}
+          <div className="text-center">
+            <p className="text-xl font-semibold mb-4">
+              웹툰 작가님들 덕분에 많은 행복을 느낍니다. 정식 플랫폼을 이용해 창작자를 응원합니다!
+            </p>
+            <div className="flex justify-center items-center space-x-4">
+              <Image src="/images/reader2.png" alt="Reader" width={50} height={50} className="rounded-full" />
+              <span className="text-lg font-bold">독자 B</span>
+            </div>
+          </div>
+
+          {/* 슬라이더 항목 3 */}
+          <div className="text-center">
+            <p className="text-xl font-semibold mb-4">
+              정식 웹툰을 이용해 작가님들의 노력을 응원합니다. 작가님, 파이팅!
+            </p>
+            <div className="flex justify-center items-center space-x-4">
+              <Image src="/images/reader3.png" alt="Reader" width={50} height={50} className="rounded-full" />
+              <span className="text-lg font-bold">독자 C</span>
+            </div>
+          </div>
+        </Slider>
+      </section>
     </div>
   );
 };
