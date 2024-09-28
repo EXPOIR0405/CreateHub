@@ -113,7 +113,6 @@ const Footer = () => {
 };
 
 const Index = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   // 비디오 경로 배열
   const videoSources = [
@@ -220,24 +219,20 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <header className="border-b relative">
+      <header className="sticky top-0 z-50 bg-white border-b shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold">Logo</div>
           <nav className="hidden md:block flex-grow">
             <ul className="flex space-x-6 justify-end">
-              <li>불법 사이트 신고하기</li>
-              <li>법률 정보 지원</li>
-              <li>창작자 지원 프로그램</li>
-              <li className="relative">
-                <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="flex items-center">
-                  커뮤니티 <span className="ml-1">▼</span>
-                </button>
-              </li>
+              <Link href="/report" className="text-gray-700 hover:text-black">불법 사이트 신고하기</Link>
+              <Link href="/legal" className="text-gray-700 hover:text-black">법률 정보 지원</Link>
+              <Link href="/support" className="text-gray-700 hover:text-black">창작자 지원 프로그램</Link>
+              <Link href="/community" className="text-gray-700 hover:text-black">커뮤니티</Link>
             </ul>
           </nav>
           <div className="hidden md:flex space-x-2 ml-6">
-            <button className="px-4 py-2 border">회원가입</button>
-            <button className="px-4 py-2 bg-black text-white">로그인</button>
+            <button className="px-4 py-2 border rounded hover:bg-gray-100">회원가입</button>
+            <button className="px-4 py-2 bg-black text-white rounded hover:bg-gray-800">로그인</button>
           </div>
           <button 
             className="md:hidden"
@@ -255,48 +250,17 @@ const Index = () => {
           </button>
         </div>
         {isMobileMenuOpen && (
-          <div className="md:hidden">
-            <ul className="bg-white border-t py-2">
-              <li className="px-4 py-2">불법 사이트 신고하기</li>
-              <li className="px-4 py-2">법률 정보 지원</li>
-              <li className="px-4 py-2">창작자 지원 프로그램</li>
-              <li className="px-4 py-2">커뮤니티</li>
+          <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t shadow-md">
+            <ul className="py-2">
+              <li className="px-4 py-2 hover:bg-gray-100"><Link href="/report">불법 사이트 신고하기</Link></li>
+              <li className="px-4 py-2 hover:bg-gray-100"><Link href="/legal">법률 정보 지원</Link></li>
+              <li className="px-4 py-2 hover:bg-gray-100"><Link href="/support">창작자 지원 프로그램</Link></li>
+              <li className="px-4 py-2 hover:bg-gray-100"><Link href="/community">커뮤니티</Link></li>
             </ul>
           </div>
         )}
       </header>
 
-      {isMenuOpen && (
-        <div className="absolute left-0 right-0 bg-white z-10">
-          <div className="container mx-auto px-4 py-6">
-            <ul className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              <li>
-                <h3 className="font-bold">불법 사이트 신고하기</h3>
-                <p className="text-sm">불법 웹툰으로 피해를 받으셨나요? <br />여기에 신고해 주세요!</p>
-              </li>
-              <li>
-                <h3 className="font-bold">법률 정보 지원</h3>
-                <p className="text-sm">저작권 침해에 대응 방법을 안내해 드립니다.</p>
-              </li>
-              <li>
-                <h3 className="font-bold">창작자 지원 프로그램</h3>
-                <p className="text-sm">창작자들을 위한 다양한 지원 프로그램을 소개합니다.</p>
-              </li>
-              <li>
-                <h3 className="font-bold">커뮤니티</h3>
-                <p className="text-sm">작가들과 소통하고 정보를 공유할 수 있는 공간입니다.</p>
-              </li>
-            </ul>
-          </div>
-          <div className="bg-gray-200 py-4 mt-6">
-            <div className="container mx-auto px-4 text-center">
-              <p className="text-sm">
-                개발자에게 문의하고 싶으신가요? <a href="mailto:rkdalswjd0405@gmail.com" className="underline font-semibold">rkdalswjd0405@gmail.com</a>으로 문의해주세요!
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
       {/* 메인 콘텐츠 */}
       <main className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
         {/* 왼쪽 텍스트와 버튼 부분 */}
