@@ -98,45 +98,45 @@ const Index = () => {
   };
 
   // 커스텀 화살표 컴포넌트
-const PrevArrow = ({ onClick }: { onClick?: () => void }) => {
-  return (
-    <button
-      onClick={onClick}
-      className="absolute left-0 z-10 transform -translate-y-1/2 top-1/2 bg-white border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
-    >
-      <svg
-        className="w-6 h-6 text-gray-500"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+  const PrevArrow = ({ onClick }: { onClick?: () => void }) => {
+    return (
+      <button
+        onClick={onClick}
+        className="absolute left-0 z-10 transform -translate-y-1/2 top-1/2 bg-white border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
       >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-      </svg>
-    </button>
-  );
-};
+        <svg
+          className="w-6 h-6 text-gray-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+    );
+  };
 
-const NextArrow = ({ onClick }: { onClick?: () => void }) => {
-  return (
-    <button
-      onClick={onClick}
-      className="absolute right-0 z-10 transform -translate-y-1/2 top-1/2 bg-white border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
-    >
-      <svg
-        className="w-6 h-6 text-gray-500"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
+  const NextArrow = ({ onClick }: { onClick?: () => void }) => {
+    return (
+      <button
+        onClick={onClick}
+        className="absolute right-0 z-10 transform -translate-y-1/2 top-1/2 bg-white border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center shadow-lg"
       >
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
-  );
-};
+        <svg
+          className="w-6 h-6 text-gray-500"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    );
+  };
 
-  // 그 다음 슬라이더 설정을 정의합니다
+  //슬라이더 정의 
   const settings = {
     dots: true,
     infinite: true,
@@ -146,6 +146,42 @@ const NextArrow = ({ onClick }: { onClick?: () => void }) => {
     arrows: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+  };
+
+  // FAQ 데이터
+  const faqs = [
+    {
+      question: '크리에이터 허브는 어떤 사이트인가요?',
+      answer: '크리에이터 허브는 웹툰, 웹소설 창작자들을 지원하고 보호하기 위해 만들어진 플랫폼입니다. 불법 웹툰 사이트 신고, 법률 정보 지원, 창작자 지원 프로그램, 그리고 커뮤니티에 기능을 제공합니다.',
+    },
+    {
+      question: '불법 웹툰 사이트를 어떻게 신고할 수 있나요?',
+      answer: '상단 메뉴의 "불법 사이트 신고하기" 버튼을 클릭하면 신고 페이지로 이동합니다. 필요한 정보를 입력하고 증거 자료를 첨부하여 신고할 수 있습니다.',
+    },
+    {
+      question: '창작자 지원 프로그램은 어떻게 참여할 수 있나요?',
+      answer: '크리에이터 허브의 창작자 지원 프로그램 섹션에서 프로그램 정보를 확인하고, 지원 신청을 통해 참여할 수 있습니다. 지원 자격과 방법에 대한 자세한 내용은 해당 페이지에 안내되어 있습니다.',
+    },
+    {
+      question: '커뮤니티에 가입하려면 어떻게 해야 하나요?',
+      answer: '회원가입 후 "커뮤니티" 메뉴를 통해 자유롭게 참여할 수 있습니다. 창작자들과 소통하고 정보를 공유할 수 있는 공간입니다.',
+    },
+    {
+      question: '웹툰 불법 유통 문제를 해결하기 위해 어떤 지원을 받을 수 있나요?',
+      answer: '크리에이터 허브는 저작권 침해에 대한 법률 상담, 신고 절차 안내, 커뮤니티를 통한 정보 공유 등 다양한 지원을 제공합니다. 자세한 사항은 "법률 정보 지원" 섹션을 확인하세요.',
+    },
+    {
+      question: '회원가입은 무료인가요?',
+      answer: '네, 크리에이터 허브의 회원가입은 무료입니다. 창작자 지원 및 커뮤니티 활동을 위해 가입 후 자유롭게 이용하실 수 있습니다.',
+    },
+  ];
+
+  // 각 FAQ의 열림 상태를 관리하는 상태
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  // 각 항목의 클릭 이벤트 핸들러
+  const handleToggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
@@ -372,6 +408,35 @@ const NextArrow = ({ onClick }: { onClick?: () => void }) => {
           </div>
         </Slider>
       </section>
+
+      <section className="container mx-auto px-4 py-16 flex flex-col md:flex-row gap-8">
+      {/* 왼쪽 섹션 */}
+      <div className="w-full md:w-1/3">
+        <h2 className="text-3xl font-bold mb-8">FAQ</h2>
+        <p className="text-lg mb-4">
+          FAQ에서 찾는 답변이 없으신가요? 언제든지 문의해 주세요!
+        </p>
+        <button className="px-6 py-3 border border-black rounded mb-8">문의하기</button>
+      </div>
+      
+      {/* 오른쪽 섹션 */}
+      <div className="w-full md:w-2/3 space-y-4">
+        {faqs.map((faq, index) => (
+          <div key={index} className="border p-4 rounded">
+            <div
+              className="flex justify-between items-center cursor-pointer"
+              onClick={() => handleToggle(index)}
+            >
+              <h3 className="text-xl font-semibold">{faq.question}</h3>
+              <span className="text-2xl">{openIndex === index ? '−' : '+'}</span>
+            </div>
+            {openIndex === index && (
+              <p className="mt-4 text-gray-700">{faq.answer}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
     </div>
   );
 };
