@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-
+import Link from 'next/link';
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // 비디오 경로 배열
+  const videoSources = [
+    '/videos/video1.mp4',
+    '/videos/video2.mp4',
+    '/videos/video3.mp4',
+    '/videos/video4.mp4',
+  ];
+
+  // 현재 재생 중인 비디오 인덱스 상태
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+
+  // 비디오 재생이 끝날 때 호출될 함수
+  const handleVideoEnd = () => {
+    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videoSources.length);
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -108,9 +123,70 @@ const Index = () => {
           </div>
         </div>
       </main>
+
+         {/* 비디오 섹션 */}
+      <section className="container mx-auto px-4 py-16 relative">
+        {/* 비디오 영역 */}
+        <div className="w-full h-[500px] bg-black relative overflow-hidden">
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            loop={false}
+            muted
+            src={videoSources[currentVideoIndex]}
+            onEnded={handleVideoEnd} // 비디오가 끝날 때 호출
+          />
+          {/* 중앙에 문구 추가 */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <p className="text-white text-3xl font-bold">나의 소중한 작품은 내 또 다른 권리니까</p>
+          </div>
+        </div>
+      </section>
+ 
+{/* 주요 기능 섹션 */}
+<section className="container mx-auto px-4 py-16">
+        <h2 className="text-3xl font-bold mt-10 mb-20 text-center">크리에이터 허브의 주요 기능</h2>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* 불법 웹툰·웹소설 신고 */}
+          <div className="p-6 text-center">
+            <Image src="/images/sue.png" alt="Placeholder" width={250} height={150} />
+            <h3 className="text-xl font-bold mt-4">불법 웹툰·웹소설 신고</h3>
+            <p className="mt-2">저작권 침해를 신고하고 보호받으세요</p>
+            <Link href="/report" className="inline-block mt-4 text-blue-500">신고하기 &gt;</Link>
+          </div>
+
+          {/* 법률 정보 지원 */}
+          <div className="p-6 text-center">
+            <Image src="/images/lawyer.png" alt="Placeholder" width={250} height={150} />
+            <h3 className="text-xl font-bold mt-4">법률 정보 지원</h3>
+            <p className="mt-2">저작권 보호를 위한 법률 정보를 제공합니다.</p>
+            <Link href="/legal-support" className="inline-block mt-4 text-blue-500">신고하기 &gt;</Link>
+          </div>
+
+          {/* 창작자 지원 프로그램 */}
+          <div className="p-6 text-center">
+            <Image src="/images/help.png" alt="Placeholder" width={250} height={150} />
+            <h3 className="text-xl font-bold mt-4">창작자 지원 프로그램</h3>
+            <p className="mt-2">창작자들을 위한 다양한 지원을 만나보세요.</p>
+            <Link href="/creator-support" className="inline-block mt-4 text-blue-500">지원 알아보기 &gt;</Link>
+          </div>
+
+          {/* 창작자 커뮤니티 */}
+          <div className="p-6 text-center">
+            <Image src="/images/community.png" alt="Placeholder" width={250} height={150} />
+            <h3 className="text-xl font-bold mt-4">창작자 커뮤니티</h3>
+            <p className="mt-2">같은 고민을 가진 창작자들과 <br/> 소통해보세요.</p>
+            <Link href="/community" className="inline-block mt-4 text-blue-500">커뮤니티 참여 &gt;</Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
+
+
+
+
 
 
 export default Index;
