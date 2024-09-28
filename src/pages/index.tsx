@@ -60,8 +60,9 @@ const StatisticsSection = () => {
     <section className="container mx-auto px-4 py-16">
       <h2 className="text-3xl font-bold mt-10 mb-4">웹툰 불법 유통 피해 현황 알아보기</h2>
       <p className="mb-8 text-gray-700">
-        불법 웹툰 사이트로 인해 많은 창작자들이 저작권 침해와 수익 감소의 피해를 입고 있습니다. 
-        지금도 많은 작품들이 무단으로 유통되고 있으며, 창작자들의 권리가 보호받지 못하고 있습니다.
+        &apos;공짜로 즐겨야 이득이지!&apos;라고 생각하는 당신, 알고 계신가요? 불법 웹툰 사이트로 인해 창작자들이 
+        저작권 침해와 수익 감소로 고통받고 있습니다. 귀하의 사랑에 힘입어(?) 지금도 많은 작품들이 무단으로 
+        유통되고 있답니다. 어쩌면 당신의 손끝에서 누군가의 노력과 꿈이 사라지고 있을지도 몰라요!
       </p>
       <div className="w-full flex justify-center">
         <div className="w-full md:w-2/3">
@@ -184,11 +185,11 @@ const Index = () => {
   // FAQ 데이터
   const faqs = [
     {
-      question: '크리에이터 허브는 어떤 사이트인가요?',
+      question: '크리에이터 허브, 뭔가요? 🤔',
       answer: '크리에이터 허브는 웹툰, 웹소설 창작자들을 지원하고 보호하기 위해 만들어진 플랫폼입니다. 불법 웹툰 사이트 신고, 법률 정보 지원, 창작자 지원 프로그램, 그리고 커뮤니티에 기능을 제공합니다.',
     },
     {
-      question: '불법 웹툰 사이트를 어떻게 신고할 수 있나요?',
+      question: '불법 웹툰 사이트, 어디서 신고하죠? 🚨',
       answer: '상단 메뉴의 "불법 사이트 신고하기" 버튼을 클릭하면 신고 페이지로 이동합니다. 필요한 정보를 입력하고 증거 자료를 첨부하여 신고할 수 있습니다.',
     },
     {
@@ -221,7 +222,7 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <header className="sticky top-0 z-50 bg-white border-b shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold">Logo</div>
+          <div className="text-2xl font-bold">CreateHub</div>
           <nav className="hidden md:block flex-grow">
             <ul className="flex space-x-6 justify-end">
               <Link href="/report" className="text-gray-700 hover:text-black">불법 사이트 신고하기</Link>
@@ -261,16 +262,14 @@ const Index = () => {
         )}
       </header>
 
-      {/* 메인 콘텐츠 */}
+      {/* 메인 소개 콘텐츠 */}
       <main className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
         {/* 왼쪽 텍스트와 버튼 부분 */}
         <div className="w-full md:w-1/2 mb-8 md:mb-0 md:pr-16 flex flex-col justify-center">
           <p className="text-l font-extrabold mb-4 text-blue-500">소개</p> 
           <h1 className="text-5xl font-bold mb-6">CreateHub</h1>
           <p className="text-lg mb-8">
-            크리에이터 허브에 오신 것을 환영합니다! 저희는 창작자분들의 권리를 보호하고,
-            보다 안전한 웹 환경을 만들기 위해 노력하고 있습니다. 불법 사이트 신고, 법률 정보 지원,
-            창작자 지원 프로그램, 그리고 커뮤니티를 통해 창작자분들을 돕겠습니다. 함께해 주세요!
+          안녕하세요! 크리에이터 허브에 오신 걸 환영해요! 🥳 여기선 창작자분들의 소중한 작품을 보호하고, 안전한 웹 환경을 만드는 데 함께 노력해요. 우리 함께 힘내요! 💪
           </p>
           <div className="flex space-x-4">
             <button className="px-6 py-3 bg-black text-white rounded">회원가입</button>
@@ -300,13 +299,13 @@ const Index = () => {
           />
           {/* 중앙에 문구 추가 */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-white text-3xl font-bold">나의 소중한 작품은 내 또 다른 권리니까</p>
+            <p className="text-white text-3xl font-bold">내 작품은 내 자부심! 함께 지켜봐요! ✨</p>
           </div>
         </div>
       </section>
       {/* 주요 기능 섹션 */}
       <section className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold mt-10 mb-20 text-center">크리에이터 허브의 주요 기능</h2>
+        <h2 className="text-3xl font-bold mt-10 mb-20 text-center">크리에이터 허브, 어떤 기능들이 있을까요? 👀</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* 불법 웹툰·웹소설 신고 */}
           <div className="p-1 text-center">
@@ -319,7 +318,7 @@ const Index = () => {
             />
             <h3 className="text-xl font-bold mt-4">불법 웹툰·웹소설 신고</h3>
             <p className="mt-2">저작권 침해를 신고하고 보호받으세요</p>
-            <Link href="/report" className="inline-block mt-4 text-blue-500">신고하기 &gt;</Link>
+            <Link href="/report" className="inline-block mt-4 text-blue-500">신고하기 🚨 &gt;</Link>
           </div>
 
           {/* 법률 정보 지원 */}
